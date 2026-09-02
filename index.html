@@ -8,34 +8,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
 <style>
-      <!-- CSS -->
-	@media (max-width: 768px) {
-   	 table {
-        width: 100% !important;
-        font-size: 14px; /* 글자 크기를 살짝 줄임 */
-   	 	}
-  	  th, td {
-        padding: 6px 4px !important; /* 여백을 줄여 공간 확보 */
-        word-break: keep-all; /* 단어가 어색하게 깨지지 않게 함 */
-    		}
-	}
+    /* CSS */
+    @media (max-width: 768px) {
+        table {
+            width: 100% !important;
+            font-size: 13px; /* 모바일에서 글자가 잘리지 않도록 크기 조절 */
+        }
+        th, td {
+            padding: 8px 4px !important; /* 모바일 여백 최적화 */
+            word-break: keep-all;
+        }
+    }
       
-       <!-- 표 안의 글자가 세로로 찌그러지지 않게 방지 -->
-		table th, table td {
-   	 	white-space: nowrap !important;
-   	 	word-break: keep-all !important;
-	     }
+    /* 표 안의 글자가 세로로 찌그러지지 않게 방지 */
+    table th, table td {
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+    }
 
-	<!-- 핸드폰에서 표를 좌우로 손가락으로 밀어서 볼 수 있게 설정 -->
-		table-responsive, .table-container, table {
-    		display: block;
-    		overflow-x: auto;
-    		-webkit-overflow-scrolling: touch;
-	     }		
+    /* 핸드폰에서 표를 좌우로 손가락으로 밀어서 볼 수 있게 설정 */
+    .table-responsive, .table-container, table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
 
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; }
-        
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+    body { font-family: 'Noto Sans KR', sans-serif; }
+    
+    /* 이하 생략 (기존 스타일 그대로 유지) */
+</style>
+	
         .video-container {
             position: absolute;
             top: 0;
