@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스킨 스쿠버 교사 동호회 - Dive_into_the_Blue_Teachers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+<style>
+      <!-- CSS -->
+	@media (max-width: 768px) {
+   	 table {
+        width: 100% !important;
+        font-size: 14px; /* 글자 크기를 살짝 줄임 */
+   	 	}
+  	  th, td {
+        padding: 6px 4px !important; /* 여백을 줄여 공간 확보 */
+        word-break: keep-all; /* 단어가 어색하게 깨지지 않게 함 */
+    		}
+	}
+      
+       <!-- 표 안의 글자가 세로로 찌그러지지 않게 방지 -->
+		table th, table td {
+   	 	white-space: nowrap !important;
+   	 	word-break: keep-all !important;
+	     }
+
+	<!-- 핸드폰에서 표를 좌우로 손가락으로 밀어서 볼 수 있게 설정 -->
+		table-responsive, .table-container, table {
+    		display: block;
+    		overflow-x: auto;
+    		-webkit-overflow-scrolling: touch;
+	     }		
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .video-container video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+        }
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.6));
+            z-index: 0;
+        }
+        html { scroll-behavior: smooth; }
+        .click-hint {
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+        .media-fade {
+            animation: mediaFadeIn 0.6s ease-out;
+        }
+        @keyframes mediaFadeIn {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #0ea5e9;
+            width: 0%;
+            transition: width linear;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- 가오리 영상용 배경음악 (음악 파일명을 실제 가지고 계신 파일명으로 바꿔주세요) -->
+    <audio id="stingrayAudio" src="bgm.mp3" preload="auto"></audio>
+
+    <!-- 상단 히어로 섹션 -->
+    <header class="relative h-[90vh] flex items-center justify-center text-center text-white px-4 overflow-hidden">
+        <div class="video-container">
+            <video autoplay muted loop playsinline id="heroVideo">
+                <source src="KakaoTalk_20260410_201137392.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl">
+            <h1 class="text-4xl md:text-7xl font-extrabold mb-6 drop-shadow-2xl tracking-tight text-white">Dive into the Blue Teachers!</h1>
+            <p class="text-lg md:text-2xl font-light mb-12 drop-shadow-md opacity-95 leading-relaxed text-white">
+                선생님들을 위한 특별한 수중 탐험,<br>
+                교실 밖 푸른 바다의 주인공이 되어보세요.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://docs.google.com/forms/d/1Dghno9w3J95b8XzDv_1DAreEPOm1p01QKhz29cRtxIk/edit" target="_blank" class="w-full sm:w-auto bg-sky-500 hover:bg-sky-600 text-white px-10 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2">
+                    <i class="fas fa-paper-plane"></i> 동호회 신청하기
+                </a>
+
+                <a href="#gallery" class="w-full sm:w-auto border-2 border-white/70 hover:border-white hover:bg-white/10 text-white px-7 py-4 rounded-full font-bold transition-all flex items-center justify-center gap-2 whitespace-nowrap">
+                    <i class="fas fa-play"></i> 활동 영상 보기
+                </a>
+
+                <a href="https://docs.google.com/forms/d/1xOnugixbEfpPMZMOv0IXPSBvqdBH-S8RPaer3g-3bO8/edit?pli=1/viewform" target="_blank" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-white px-7 py-4 rounded-full font-bold transition-all transform hover:scale-105 shadow-xl flex items-center justify-center gap-2 whitespace-nowrap">
+                    <i class="fas fa-edit"></i> 다이빙 교육 신청하기
+                </a>
+
+                <a href="#schedule" onclick="switchTab('tour')" class="w-full sm:w-auto bg-white/20 hover:bg-white/30 border border-white/40 backdrop-blur-sm text-white px-7 py-4 rounded-full font-bold transition-all transform hover:scale-105 flex items-center justify-center gap-2 whitespace-nowrap">
+                    <i class="fas fa-plane"></i> 투어 일정 보기
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 미디어 갤러리 섹션 -->
+    <section id="gallery" class="pt-20 pb-10 px-4 max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="order-2 lg:order-1">
+                <span class="text-sky-500 font-bold tracking-widest uppercase text-xs mb-3 block">Ocean Highlight</span>
+                <h3 class="text-3xl font-bold mb-6 text-slate-900 leading-tight">
+                    바닷속 생생한 현장을<br>지금 바로 확인하세요
+                </h3>
+                <p class="text-slate-600 mb-8 leading-relaxed">
+                    아이콘을 누르면 <b>거북이, 가오리, 샤크 등</b> 사이판의 환상적인 수중 영상과 사진이 자동으로 재생됩니다.
+                </p>
+                
+                <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-lg flex items-center justify-between border-l-8 border-l-sky-500">
+                    <div>
+                        <p id="statusText" class="font-bold text-slate-900 mb-1 italic">"Ready to Dive?"</p>
+                        <p class="text-sky-600 text-sm">마스크 아이콘을 클릭하세요!</p>
+                    </div>
+                    <button onclick="toggleAutoPlay()" id="playBtn" class="text-sky-500 hover:text-sky-700 transition-all transform hover:scale-110 focus:outline-none click-hint p-2">
+                        <div class="relative">
+                            <i id="playIcon" class="fas fa-mask text-5xl"></i>
+                            <span id="clickBadge" class="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] px-2 py-1 rounded-full font-black animate-pulse">CLICK</span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
+            <div id="mediaContainer" class="order-1 lg:order-2 rounded-[2rem] overflow-hidden shadow-2xl h-[400px] md:h-[500px] bg-black relative flex items-center justify-center group">
+                <img id="displayImage" src="KakaoTalk_20260407_213320076.jpg" alt="Gallery" class="w-full h-full object-cover">
+                <video id="displayVideo" class="hidden w-full h-full object-cover" muted playsinline></video>
+                
+                <div id="mediaInfo" class="absolute bottom-4 left-4 right-4 z-20">
+                    <div class="bg-black/50 backdrop-blur-md text-white px-4 py-3 rounded-xl border border-white/10 flex justify-between items-center">
+                        <span id="mediaLabel" class="font-medium text-sm flex items-center gap-2">
+                            <i class="fas fa-water text-sky-400"></i> 사이판 바다 탐험
+                        </span>
+                        <span id="counter" class="text-xs font-mono opacity-80">1 / 10</span>
+                    </div>
+                    <div class="progress-bar rounded-full overflow-hidden mt-2">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 일정 및 안내 섹션 -->
+    <section id="schedule" class="py-10 px-4 max-w-6xl mx-auto scroll-mt-10">
+        <div class="bg-white p-6 md:p-10 rounded-[2rem] border border-slate-100 shadow-xl border-t-8 border-t-sky-500">
+            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <span class="text-sky-500 font-bold tracking-widest uppercase text-xs mb-2 block">Ocean Center</span>
+                    <h3 class="text-2xl md:text-3xl font-bold text-slate-900">다이빙 교육 및 투어 안내</h3>
+                    <p class="text-slate-500 text-sm mt-2">안전하고 즐거운 탐험을 위한 일정입니다. 탭을 선택해 확인하세요.</p>
+                </div>
+                
+                <a href="https://docs.google.com/forms/d/1xOnugixbEfpPMZMOv0IXPSBvqdBH-S8RPaer3g-3bO8/edit?pli=1/viewform" target="_blank" class="bg-emerald-700 hover:bg-emerald-800 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md flex items-center gap-2 text-sm self-start md:self-center">
+                    <i class="fas fa-edit"></i> 365일 교육 신청서 작성
+                </a>
+            </div>
+
+            <div class="flex border-b border-slate-200 mb-6 gap-2">
+                <button id="tabEduBtn" onclick="switchTab('education')" class="py-3 px-5 font-bold text-sm md:text-base border-b-4 border-sky-500 text-sky-600 transition-all focus:outline-none flex items-center gap-2">
+                    <i class="fas fa-graduation-cap"></i> 다이빙 교육 일정
+                </button>
+                <button id="tabTourBtn" onclick="switchTab('tour')" class="ml-4 py-3 px-5 font-bold text-sm md:text-base border-b-4 border-transparent text-slate-400 hover:text-slate-600 transition-all focus:outline-none flex items-center gap-2">
+                    <span class="ml-20">
+                        <i class="fas fa-plane mr-2"></i> 다이빙 투어 일정
+                    </span>
+                </button>
+            </div>
+
+            <!-- 교육 일정 테이블 -->
+            <div id="educationScheduleTable" class="block overflow-x-auto rounded-2xl border border-slate-100">
+                <table class="w-full border-collapse text-left text-sm md:text-base">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-100 text-slate-600 font-bold">
+                            <th class="p-4 md:p-5">날짜 / 기간</th>
+                            <th class="p-4 md:p-5">일정 및 교육 내용</th>
+                            <th class="p-4 md:p-5">장소</th>
+                            <th class="p-4 md:p-5 text-center">신청하기</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-5 font-bold text-sky-700">00월 00일 (일요일~토요일 )<br>&nbsp;
+                                <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
+                                    Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </td>
+                            <td class="p-4 md:p-5 font-medium text-sm md:text-base whitespace-nowrap">오픈워터 이론 및 풀장 교육 및 어드밴스드 레벨 업 & 수중 항법 실습 </td>
+                            <td class="p-4 md:p-5">강사님과 통화 후 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;결정</td>
+                            <td class="p-4 md:p-5 text-center">
+                                <a href="https://docs.google.com/forms/d/1xOnugixbEfpPMZMOv0IXPSBvqdBH-S8RPaer3g-3bO8/edit?pli=1/viewform" target="_blank" class="inline-block bg-sky-500 hover:bg-sky-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
+                                    신청하기 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+          <!-- 투어 일정 테이블 -->
+            <div id="tourScheduleTable" class="hidden overflow-x-auto rounded-2xl border border-slate-100">
+                <table class="w-full border-collapse text-left text-sm md:text-base">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-100 text-slate-600 font-bold">
+                            <th class="p-4 md:p-5">날짜 / 기간</th>
+                            <th class="p-4 md:p-5">일정 및 교육 내용</th>
+                            <th class="p-4 md:p-5">장소</th>
+                            <th class="p-4 md:p-5 text-center">신청하기</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-slate-700">
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-5 font-bold text-amber-600">2027년 09월 01일 ~ 11월 30일 <br>&nbsp;&nbsp;
+                                <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
+                                    Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </td>
+                            <td class="p-4 md:p-5 font-medium">✨ 국내 다이빙 투어 ✨ </td>
+                            <td class="p-4 md:p-5">동해안, 남해안 일대 해역 </td>
+                            <td class="p-4 md:p-5 text-center">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
+                                    투어 신청 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-5 font-bold text-amber-600">2027년 01월 13일 ~ 01월 22일 <br>&nbsp;&nbsp;
+                                <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
+                                    Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </td>
+                            <td class="p-4 md:p-5 font-medium">✨ 필리핀 보홀 환상 투어 (거북이/침몰선 포인트) ✨ <br> ✨ 필리핀 두마게티 환상 투어(샌드뱅크 / 아포섬) ✨ </td>
+                            <td class="p-4 md:p-5">필리핀 보홀 일대 해역 <br>필리핀 두마게티 일대 해역</td>
+                            <td class="p-4 md:p-5 text-center">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
+                                    투어 신청 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-5 font-bold text-amber-600">2027년 01월 25일 ~ 02월 03일 <br>&nbsp;&nbsp;
+                                <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
+                                    Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </td>
+                            <td class="p-4 md:p-5 font-medium">✨ 필리핀 보홀 환상 투어 (거북이/침몰선 포인트) ✨</td>
+                            <td class="p-4 md:p-5">필리핀 보홀 일대 해역</td>
+                            <td class="p-4 md:p-5 text-center">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
+                                    투어 신청 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-3 items-start sm:items-center justify-between text-xs md:text-sm text-slate-500 bg-slate-50 p-4 rounded-xl">
+                <span class="flex items-center gap-2">
+                    <i class="fas fa-info-circle text-sky-500"></i> 각 일정별 상세 준비물 및 비용은 오픈채팅방을 통해 별도 공지됩니다.
+                </span>
+                <a href="#apply" class="text-sky-600 font-bold hover:underline">
+                    운영진에게 문의하기 <i class="fas fa-chevron-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+  
+   <!-- 오시는 길 섹션 -->
+  <section id="location" class="pb-8 pt-4 px-4 max-w-6xl mx-auto">
+    <div class="bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-md border-t-4 border-t-slate-700">
+        <div class="mb-3">
+            <span class="text-slate-500 font-bold tracking-widest uppercase text-[10px] mb-0.5 block">Location</span>
+            <h3 class="text-xl md:text-2xl font-bold text-slate-900">주요 교육장 오시는 길</h3>
+            <p class="text-slate-500 text-xs mt-0.5">이론 및 제한수역(풀장) 교육이 진행되는 주소입니다.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-4 items-stretch">
+            <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl flex flex-col justify-between gap-2">
+                <div class="space-y-2">
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 올림픽수영장 잠수풀</h4>
+                        <p class="text-xs text-slate-600">서울 송파구 올림픽로 424</p>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 성남 아쿠아라인</h4>
+                        <p class="text-xs text-slate-600">경기 성남시 중원구 제일로 60 성남종합운동장 내</p>
+                    </div>
+               
+		    <div>
+                       <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 장소 조정 가능..!!</h4>
+                    </div>
+                
+	</div>
+              
+                <div class="text-[11px] text-slate-400 border-t border-slate-200 pt-2">
+                    * 주차 지원 여부는 당일 교육 안내 공지를 참고 바랍니다.
+                </div>
+            </div>
+            <div class="md:col-span-2 rounded-xl overflow-hidden shadow-inner border border-slate-100 min-h-[180px]">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101344.24641662589!2d127.01838618451121!3d37.458694065609425!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!3m3!1m2!1s0x357ca59fe7abdf87%3A0x633d74944414f5e7!2z7J6s7Iuk7JiM66as7ZS97IiY7JiB7J6l!5e0!3m2!1sko!2skr!4v1713000000000!5m2!1sko!2skr" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; min-height: 180px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- 하단 푸터 / 운영진 정보 -->
+    <section id="apply" class="py-16 bg-slate-900 px-4 text-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">함께하는 운영진</h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white/10 p-6 rounded-2xl">
+                    <p class="text-xl font-bold text-sky-400 mb-4">회 장</p>
+                    <p class="text-xl font-bold mb-2">권 지 연</p>
+                    <p class="text-xl font-bold mb-2">(OO고)</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl">
+                    <p class="text-xl font-bold text-sky-400 mb-4">대표 강사</p>
+                    <p class="text-xl font-bold mb-2">고 광 진</p>
+                    <p class="text-xl font-bold mb-2">(OO고)</p>
+                    <p class="text-xl font-bold mb-2">Tel : 010-2602-4566</p>
+                </div>
+                <div class="bg-white/10 p-6 rounded-2xl">
+                    <p class="text-xl font-bold text-sky-400 mb-4">보조 강사</p>
+                    <p class="text-xl font-bold mb-2">최 우 철</p>
+                    <p class="text-xl font-bold mb-2">(OO중)</p>
+                </div>
+            </div>
+
+            <div class="mt-12 text-center">
+                <p class="mb-8 opacity-80 text-xl md:text-2xl">
+                    <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" rel="noopener noreferrer" class="cursor-pointer hover:underline">
+                        카톡 오픈 채팅방: <span class="font-bold text-yellow-400">Dive into the Blue Teachers..!!</span>
+                    </a>
+                </p>
+                <p class="mb-8 opacity-80 text-xl md:text-2xl">
+                    <a href="https://www.band.us/band/103501076/post" target="_blank" rel="noopener noreferrer" class="hover:underline">
+                        밴드 가입: <span class="font-bold text-yellow-400">Dive into the Blue Teachers..!!</span>
+                    </a>
+                </p>
+                <a href="https://docs.google.com/forms/d/1xOnugixbEfpPMZMOv0IXPSBvqdBH-S8RPaer3g-3bO8/edit?pli=1/viewform" target="_blank" class="inline-block bg-white text-sky-900 font-bold px-12 py-4 rounded-full hover:bg-sky-100 transition-all shadow-lg">
+                    지금 바로 가입/교육 신청하기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-slate-500 text-xs bg-slate-50">
+        <p>© 2024 ENGRIGO SCUBA TEACHERS CLUB. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 탭 전환 스크립트
+        function switchTab(tabType) {
+            const eduTable = document.getElementById('educationScheduleTable');
+            const tourTable = document.getElementById('tourScheduleTable');
+            const eduBtn = document.getElementById('tabEduBtn');
+            const tourBtn = document.getElementById('tabTourBtn');
+
+            const activeClass = "py-3 px-5 font-bold text-sm md:text-base border-b-4 transition-all focus:outline-none flex items-center gap-2 ";
+            const inactiveClass = "py-3 px-5 font-bold text-sm md:text-base border-b-4 border-transparent text-slate-400 hover:text-slate-600 transition-all focus:outline-none flex items-center gap-2";
+
+            if (tabType === 'education') {
+                eduTable.classList.remove('hidden');
+                tourTable.classList.add('hidden');
+                eduBtn.className = activeClass + "border-sky-500 text-sky-600";
+                tourBtn.className = inactiveClass;
+            } else if (tabType === 'tour') {
+                eduTable.classList.add('hidden');
+                tourTable.classList.remove('hidden');
+                eduBtn.className = inactiveClass;
+                tourBtn.className = activeClass + "border-amber-500 text-amber-600";
+            }
+        }
+
+        // 미디어 자동재생 플레이리스트 데이터
+        const playlist = [
+            { type: 'video', src: 'KakaoTalk_20260407_210425764.mp4', label: '웅장한 샤크의 유영', duration: 5000 },
+            { type: 'video', src: 'KakaoTalk_20260410_201137392.mp4', label: '대형 가오리의 호버링', duration: 5500, isStingray: true },
+            { type: 'video', src: 'KakaoTalk_20260407_210428184.mp4', label: '잭피쉬 떼의 은빛 군무', duration: 6000 },
+            { type: 'video', src: 'KakaoTalk_20260407_210806866.mp4', label: '바다거북의 휴식', duration: 5000 },
+            { type: 'video', src: 'KakaoTalk_20260407_210831294.mp4', label: '난파선 포인트 탐험', duration: 5500 },
+            { type: 'video', src: 'KakaoTalk_20260407_213341860.mp4', label: '대형 가오리와의 만남', duration: 5500, isStingray: true },
+            { type: 'image', src: 'KakaoTalk_20260407_213320076.jpg', label: '에메랄드빛 수면', duration: 3500 },
+            { type: 'image', src: 'KakaoTalk_20260407_210611780.jpg', label: '평화로운 바다 전경', duration: 3500 },
+            { type: 'image', src: 'KakaoTalk_20260407_210747692.jpg', label: '단체 기념 촬영', duration: 3500 },
+            { type: 'image', src: 'KakaoTalk_20260407_210847394.jpg', label: '다이버의 열정', duration: 3500 }
+        ];
+
+        let currentIndex = 0;
+        let isPlaying = false;
+        let playTimeout;
+
+        const imgEl = document.getElementById('displayImage');
+        const videoEl = document.getElementById('displayVideo');
+        const labelEl = document.getElementById('mediaLabel');
+        const counterEl = document.getElementById('counter');
+        const statusText = document.getElementById('statusText');
+        const playIcon = document.getElementById('playIcon');
+        const progressFill = document.getElementById('progressFill');
+        const bgmAudio = document.getElementById('stingrayAudio');
+
+        function toggleAutoPlay() {
+            if (isPlaying) stopShow(); else startShow();
+        }
+
+        function startShow() {
+            isPlaying = true;
+            statusText.innerText = "멋진 바다 감상 중...";
+            playIcon.classList.replace('fa-mask', 'fa-pause-circle');
+            document.getElementById('clickBadge').classList.add('hidden');
+            playNext();
+        }
+
+        function stopShow() {
+            isPlaying = false;
+            clearTimeout(playTimeout);
+            videoEl.pause();
+            bgmAudio.pause(); // 멈출 때 음악도 중지
+            statusText.innerText = "잠시 멈춤";
+            playIcon.classList.replace('fa-pause-circle', 'fa-mask');
+            progressFill.style.transition = 'none';
+            progressFill.style.width = '0%';
+        }
+
+        function playNext() {
+            if (!isPlaying) return;
+            const item = playlist[currentIndex];
+            counterEl.innerText = `${currentIndex + 1} / ${playlist.length}`;
+
+            // 가오리 영상일 때만 음악 시작, 아니면 일시정지
+            if (item.isStingray) {
+                bgmAudio.currentTime = 0; // 처음에 음악 0초부터 시작
+                bgmAudio.play().catch(e => console.log("Audio play blocked"));
+            } else {
+                bgmAudio.pause();
+            }
+
+            progressFill.style.transition = 'none';
+            progressFill.style.width = '0%';
+            setTimeout(() => {
+                progressFill.style.transition = `width ${item.duration}ms linear`;
+                progressFill.style.width = '100%';
+            }, 50);
+
+            if (item.type === 'video') {
+                imgEl.classList.add('hidden');
+                videoEl.classList.remove('hidden');
+                videoEl.src = item.src;
+                videoEl.play().catch(e => console.log("Auto-play blocked"));
+                labelEl.innerHTML = `<i class="fas fa-play-circle text-sky-400"></i> ${item.label}`;
+            } else {
+                videoEl.pause();
+                videoEl.classList.add('hidden');
+                imgEl.classList.remove('hidden');
+                imgEl.src = item.src;
+                labelEl.innerHTML = `<i class="fas fa-camera text-sky-400"></i> ${item.label}`;
+            }
+
+            playTimeout = setTimeout(() => {
+                currentIndex = (currentIndex + 1) % playlist.length;
+                playNext();
+            }, item.duration);
+        }
+
+        window.onload = function() {
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                heroVideo.playbackRate = 1.4;
+            }
+        };
+    </script>
+</body>
+</html>
