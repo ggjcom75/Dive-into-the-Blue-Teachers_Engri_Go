@@ -7,38 +7,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-<style>
-    /* CSS */
-    @media (max-width: 768px) {
-        table {
-            width: 100% !important;
-            font-size: 13px; /* 모바일에서 글자가 잘리지 않도록 크기 조절 */
+    <style>
+        /* CSS */
+        @media (max-width: 768px) {
+            table {
+                width: 100% !important;
+                font-size: 13px;
+            }
+            th, td {
+                padding: 8px 4px !important;
+                word-break: keep-all;
+            }
         }
-        th, td {
-            padding: 8px 4px !important; /* 모바일 여백 최적화 */
-            word-break: keep-all;
+          
+        /* 표 안의 글자가 세로로 찌그러지지 않게 방지 */
+        table th, table td {
+            white-space: nowrap !important;
+            word-break: keep-all !important;
         }
-    }
-      
-    /* 표 안의 글자가 세로로 찌그러지지 않게 방지 */
-    table th, table td {
-        white-space: nowrap !important;
-        word-break: keep-all !important;
-    }
 
-    /* 핸드폰에서 표를 좌우로 손가락으로 밀어서 볼 수 있게 설정 */
-    .table-responsive, .table-container, table {
-        display: block;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+        /* 핸드폰에서 표를 좌우로 손가락으로 밀어서 볼 수 있게 설정 */
+        .table-responsive, .table-container, table {
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }       
 
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-    body { font-family: 'Noto Sans KR', sans-serif; }
-    
-    /* 이하 생략 (기존 스타일 그대로 유지) */
-</style>
-	
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        
         .video-container {
             position: absolute;
             top: 0;
@@ -100,7 +97,7 @@
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-    <!-- 가오리 영상용 배경음악 (음악 파일명을 실제 가지고 계신 파일명으로 바꿔주세요) -->
+    <!-- 가오리 영상용 배경음악 -->
     <audio id="stingrayAudio" src="bgm.mp3" preload="auto"></audio>
 
     <!-- 상단 히어로 섹션 -->
@@ -204,9 +201,7 @@
                     <i class="fas fa-graduation-cap"></i> 다이빙 교육 일정
                 </button>
                 <button id="tabTourBtn" onclick="switchTab('tour')" class="ml-4 py-3 px-5 font-bold text-sm md:text-base border-b-4 border-transparent text-slate-400 hover:text-slate-600 transition-all focus:outline-none flex items-center gap-2">
-                    <span class="ml-20">
-                        <i class="fas fa-plane mr-2"></i> 다이빙 투어 일정
-                    </span>
+                    <i class="fas fa-plane mr-2"></i> 다이빙 투어 일정
                 </button>
             </div>
 
@@ -240,8 +235,7 @@
                 </table>
             </div>
 
-
-          <!-- 투어 일정 테이블 -->
+            <!-- 투어 일정 테이블 -->
             <div id="tourScheduleTable" class="hidden overflow-x-auto rounded-2xl border border-slate-100">
                 <table class="w-full border-collapse text-left text-sm md:text-base">
                     <thead>
@@ -310,52 +304,47 @@
         </div>
     </section>
 
-  
-   <!-- 오시는 길 섹션 -->
-  <section id="location" class="pb-8 pt-4 px-4 max-w-6xl mx-auto">
-    <div class="bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-md border-t-4 border-t-slate-700">
-        <div class="mb-3">
-            <span class="text-slate-500 font-bold tracking-widest uppercase text-[10px] mb-0.5 block">Location</span>
-            <h3 class="text-xl md:text-2xl font-bold text-slate-900">주요 교육장 오시는 길</h3>
-            <p class="text-slate-500 text-xs mt-0.5">이론 및 제한수역(풀장) 교육이 진행되는 주소입니다.</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-4 items-stretch">
-            <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl flex flex-col justify-between gap-2">
-                <div class="space-y-2">
-                    <div>
-                        <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 올림픽수영장 잠수풀</h4>
-                        <p class="text-xs text-slate-600">서울 송파구 올림픽로 424</p>
+    <!-- 오시는 길 섹션 -->
+    <section id="location" class="pb-8 pt-4 px-4 max-w-6xl mx-auto">
+        <div class="bg-white p-4 md:p-6 rounded-2xl border border-slate-100 shadow-md border-t-4 border-t-slate-700">
+            <div class="mb-3">
+                <span class="text-slate-500 font-bold tracking-widest uppercase text-[10px] mb-0.5 block">Location</span>
+                <h3 class="text-xl md:text-2xl font-bold text-slate-900">주요 교육장 오시는 길</h3>
+                <p class="text-slate-500 text-xs mt-0.5">이론 및 제한수역(풀장) 교육이 진행되는 주소입니다.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4 items-stretch">
+                <div class="md:col-span-1 bg-slate-50 p-4 rounded-xl flex flex-col justify-between gap-2">
+                    <div class="space-y-2">
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 올림픽수영장 잠수풀</h4>
+                            <p class="text-xs text-slate-600">서울 송파구 올림픽로 424</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 성남 아쿠아라인</h4>
+                            <p class="text-xs text-slate-600">경기 성남시 중원구 제일로 60 성남종합운동장 내</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 장소 조정 가능..!!</h4>
+                        </div>
                     </div>
-
-                    <div>
-                        <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 성남 아쿠아라인</h4>
-                        <p class="text-xs text-slate-600">경기 성남시 중원구 제일로 60 성남종합운동장 내</p>
+                    <div class="text-[11px] text-slate-400 border-t border-slate-200 pt-2">
+                        * 주차 지원 여부는 당일 교육 안내 공지를 참고 바랍니다.
                     </div>
-               
-		    <div>
-                       <h4 class="font-bold text-slate-900 text-sm mb-0.5"><i class="fas fa-map-marker-alt text-sky-500 mr-1"></i> 장소 조정 가능..!!</h4>
-                    </div>
-                
-	</div>
-              
-                <div class="text-[11px] text-slate-400 border-t border-slate-200 pt-2">
-                    * 주차 지원 여부는 당일 교육 안내 공지를 참고 바랍니다.
+                </div>
+                <div class="md:col-span-2 rounded-xl overflow-hidden shadow-inner border border-slate-100 min-h-[180px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101344.24641662589!2d127.01838618451121!3d37.458694065609425!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!3m3!1m2!1s0x357ca59fe7abdf87%3A0x633d74944414f5e7!2z7J6s7Iuk7JiM66as7ZS97IiY7JiB7J6l!5e0!3m2!1sko!2skr!4v1713000000000!5m2!1sko!2skr" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; min-height: 180px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
                 </div>
             </div>
-            <div class="md:col-span-2 rounded-xl overflow-hidden shadow-inner border border-slate-100 min-h-[180px]">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101344.24641662589!2d127.01838618451121!3d37.458694065609425!2m3!1f0!2f0!3f0!3m2!1i1024!2i1024!3m3!1m2!1s0x357ca59fe7abdf87%3A0x633d74944414f5e7!2z7J6s7Iuk7JiM66as7ZS97IiY7JiB7J6l!5e0!3m2!1sko!2skr!4v1713000000000!5m2!1sko!2skr" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0; min-height: 180px;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- 하단 푸터 / 운영진 정보 -->
     <section id="apply" class="py-16 bg-slate-900 px-4 text-white">
@@ -469,7 +458,7 @@
             isPlaying = false;
             clearTimeout(playTimeout);
             videoEl.pause();
-            bgmAudio.pause(); // 멈출 때 음악도 중지
+            bgmAudio.pause();
             statusText.innerText = "잠시 멈춤";
             playIcon.classList.replace('fa-pause-circle', 'fa-mask');
             progressFill.style.transition = 'none';
@@ -481,9 +470,8 @@
             const item = playlist[currentIndex];
             counterEl.innerText = `${currentIndex + 1} / ${playlist.length}`;
 
-            // 가오리 영상일 때만 음악 시작, 아니면 일시정지
             if (item.isStingray) {
-                bgmAudio.currentTime = 0; // 처음에 음악 0초부터 시작
+                bgmAudio.currentTime = 0;
                 bgmAudio.play().catch(e => console.log("Audio play blocked"));
             } else {
                 bgmAudio.pause();
