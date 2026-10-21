@@ -200,23 +200,24 @@
                 <button id="tabEduBtn" onclick="switchTab('education')" class="py-3 px-5 font-bold text-sm md:text-base border-b-4 border-sky-500 text-sky-600 transition-all focus:outline-none flex items-center gap-2">
                     <i class="fas fa-graduation-cap"></i> 다이빙 교육 일정
                 </button>
-                <button id="tabTourBtn" onclick="switchTab('tour')" class="ml-4 py-3 px-5 font-bold text-sm md:text-base border-b-4 border-transparent text-slate-400 hover:text-slate-600 transition-all focus:outline-none flex items-center gap-2">
-                    <i class="fas fa-plane mr-2"></i> 다이빙 투어 일정
+                <button id="tabTourBtn" onclick="switchTab('tour')" class="ml-4 py-3 px-5 font-bold text-sm md:text-base border-b-4 border-transparent text-slate-400 hover:text-slate-600 transition-all focus:outline-none flex items-center gap-8">
+                   &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<i class="fas fa-plane mr-2"></i> 국내 및 다이빙 투어 일정
                 </button>
             </div>
 
             <!-- 교육 일정 테이블 -->
-            <div id="educationScheduleTable" class="block overflow-x-auto rounded-2xl border border-slate-100">
+            <div id="educationScheduleTable" class="block overflow-x-auto rounded-2xl border border-slate-100" mt-8">
                 <table class="w-full border-collapse text-left text-sm md:text-base">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-100 text-slate-600 font-bold">
                             <th class="p-4 md:p-5">날짜 / 기간</th>
-                            <th class="p-4 md:p-5">일정 및 교육 내용</th>
+                            <th class="p-4 md:p-5">잠수풀 교육 내용 </th>
                             <th class="p-4 md:p-5">장소</th>
                             <th class="p-4 md:p-5 text-center">신청하기</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100 text-slate-700">
+
+  		    <tbody class="divide-y divide-slate-100 text-slate-700">
                         <tr class="hover:bg-slate-50/50 transition-colors">
                             <td class="p-4 md:p-5 font-bold text-sky-700">00월 00일 (일요일~토요일 )<br>&nbsp;
                                 <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
@@ -235,20 +236,21 @@
                 </table>
             </div>
 
-            <!-- 투어 일정 테이블 -->
-            <div id="tourScheduleTable" class="hidden overflow-x-auto rounded-2xl border border-slate-100">
+        
+	  <!-- 투어 일정 테이블 -->
+	     <div id="tourScheduleTable" class="hidden overflow-x-auto rounded-2xl border border-slate-200 mt-10(40px)">
                 <table class="w-full border-collapse text-left text-sm md:text-base">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-100 text-slate-600 font-bold">
                             <th class="p-4 md:p-5">날짜 / 기간</th>
-                            <th class="p-4 md:p-5">일정 및 교육 내용</th>
+                            <th class="p-4 md:p-5">국내 및 해외 투어 내용</th>
                             <th class="p-4 md:p-5">장소</th>
                             <th class="p-4 md:p-5 text-center">신청하기</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-slate-100 text-slate-700">
                         <tr class="hover:bg-slate-50/50 transition-colors">
-                            <td class="p-4 md:p-5 font-bold text-amber-600">2027년 09월 01일 ~ 11월 30일 <br>&nbsp;&nbsp;
+                            <td class="p-4 md:p-5 font-bold text-amber-600">2026년 07월 01일 ~ 11월 22일 <br>&nbsp;&nbsp;
                                 <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
                                     Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
                                 </a>
@@ -261,14 +263,50 @@
                                 </a>
                             </td>
                         </tr>
-                        <tr class="hover:bg-slate-50/50 transition-colors">
-                            <td class="p-4 md:p-5 font-bold text-amber-600">2027년 01월 13일 ~ 01월 22일 <br>&nbsp;&nbsp;
+
+ 			   <tr class="hover:bg-slate-50/50 transition-colors">
+                             <td class="p-4 md:p-5 font-bold text-amber-600">2027년 01월11일(월) ~ 01월 17일(일) <br>&nbsp;&nbsp;
                                 <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
                                     Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
                                 </a>
                             </td>
-                            <td class="p-4 md:p-5 font-medium">✨ 필리핀 보홀 환상 투어 (거북이/침몰선 포인트) ✨ <br> ✨ 필리핀 두마게티 환상 투어(샌드뱅크 / 아포섬) ✨ </td>
-                            <td class="p-4 md:p-5">필리핀 보홀 일대 해역 <br>필리핀 두마게티 일대 해역</td>
+
+			<td class="p-4 md:p-5 font-medium">✨ 필리핀 보홀 환상 투어<br> &nbsp;&nbsp;&nbsp;&nbsp;(발리카상(거북이)/아로나비치(침몰선 포인트)/ 나팔링(정어리떼) 등...!! ✨</td>
+                            <td class="p-4 md:p-5">필리핀 보홀 일대 해역</td>
+                            <td class="p-4 md:p-5 text-center">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
+                                    투어 신청 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </td>
+			</tr>
+
+
+
+ 			  <tr class="hover:bg-slate-50/50 transition-colors">
+                             <td class="p-4 md:p-5 font-bold text-amber-600">2027년 01월17일(월) ~ 01월 22일(금) <br>&nbsp;&nbsp;
+                                <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
+                                    Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </td>
+
+			<td class="p-4 md:p-5 font-medium">✨ 필리핀 두마게티 환상 투어(아포섬/다우인 구역/수밀론 섬 / 아포섬) 등...!! ✨ <br> ✨1월 17일 보홀(탁빌리안 항구--> 필리핀 두마게티(시블라 항구) ✨ <br>&nbsp;&nbsp;&nbsp;&nbsp;(탁빌리안 항구: 10시 30분 출발) <br> ✨강사님과 통화(필수) ✨ </td>
+                            <td class="p-4 md:p-5">필리핀 보홀 일대 해역</td>
+                            <td class="p-4 md:p-5 text-center">
+                                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
+                                    투어 신청 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </td>
+			</tr>
+
+
+                        <tr class="hover:bg-slate-50/50 transition-colors">
+                            <td class="p-4 md:p-5 font-bold text-amber-600">2027년 01월11일(월) ~ 01월 22일(금) <br>&nbsp;&nbsp;
+                                <a href="https://open.kakao.com/o/gOWG0bqi" target="_blank" class="text-blue-600 hover:underline">
+                                    Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
+                                </a>
+                            </td>
+                            <td class="p-4 md:p-5 font-medium"> ✨ 필리핀 보홀 환상 투어 <br>&nbsp;&nbsp;&nbsp;&nbsp; (발리카상(거북이)/아로나비치(침몰선 포인트)/ 나팔링(정어리떼) ✨<br> ✨ 필리핀 두마게티 환상 투어(아포섬/다우인 구역/수밀론 섬 / 아포섬) ✨ </td>
+                            <td class="p-4 md:p-5">필리핀 보홀 일대 해역 <br> 필리핀 두마게티 일대 해역</td>
                             <td class="p-4 md:p-5 text-center">
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
                                     투어 신청 <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
@@ -281,7 +319,7 @@
                                     Every Time 카톡 환영 <i class="fas fa-external-link-alt text-xs ml-1"></i>
                                 </a>
                             </td>
-                            <td class="p-4 md:p-5 font-medium">✨ 필리핀 보홀 환상 투어 (거북이/침몰선 포인트) ✨</td>
+                            <td class="p-4 md:p-5 font-medium">✨ 필리핀 보홀 환상 투어 <br> &nbsp;&nbsp;&nbsp;&nbsp; (발리카상(거북이)/아로나비치(침몰선 포인트)/ 나팔링(정어리떼) ✨</td>
                             <td class="p-4 md:p-5">필리핀 보홀 일대 해역</td>
                             <td class="p-4 md:p-5 text-center">
                                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSfZ5qx6eZEW0P_v4NxBDjJmkzEo-TMkownAk12yIL08toUr1Q/viewform?usp=header" target="_blank" class="inline-block bg-amber-500 hover:bg-amber-600 text-white text-xs md:text-sm font-bold px-4 py-2 rounded-full transition-all shadow-md">
